@@ -8,10 +8,10 @@ namespace SearchUsingDropDownList.Models
     public class Governorate
     {
         public int Id { get; set; }
-        public string GovNameAR { get; set; }
+        
         public string GovNameEN { get; set; }
-        public int CityId { get; set; }
 
+        
         public IEnumerable<City> Cities { get; set; }
     }
 }

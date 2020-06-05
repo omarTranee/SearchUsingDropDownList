@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,9 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.1\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -124,8 +134,48 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006051312486_initialcreate.cs" />
+    <Compile Include="Migrations\202006051312486_initialcreate.designer.cs">
+      <DependentUpon>202006051312486_initialcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051329296_dropcolumnfromGovernote.cs" />
+    <Compile Include="Migrations\202006051329296_dropcolumnfromGovernote.designer.cs">
+      <DependentUpon>202006051329296_dropcolumnfromGovernote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051331063_AddDataToGovernorateTable.cs" />
+    <Compile Include="Migrations\202006051331063_AddDataToGovernorateTable.designer.cs">
+      <DependentUpon>202006051331063_AddDataToGovernorateTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051444351_RemoveArabicNameColumn.cs" />
+    <Compile Include="Migrations\202006051444351_RemoveArabicNameColumn.designer.cs">
+      <DependentUpon>202006051444351_RemoveArabicNameColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051446115_addDataToCityTable.cs" />
+    <Compile Include="Migrations\202006051446115_addDataToCityTable.designer.cs">
+      <DependentUpon>202006051446115_addDataToCityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051526016_AddTablesClinicsAndSpeciality.cs" />
+    <Compile Include="Migrations\202006051526016_AddTablesClinicsAndSpeciality.designer.cs">
+      <DependentUpon>202006051526016_AddTablesClinicsAndSpeciality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051529209_RelateClinicWithCity.cs" />
+    <Compile Include="Migrations\202006051529209_RelateClinicWithCity.designer.cs">
+      <DependentUpon>202006051529209_RelateClinicWithCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051538421_AddDataToSpeciality.cs" />
+    <Compile Include="Migrations\202006051538421_AddDataToSpeciality.designer.cs">
+      <DependentUpon>202006051538421_AddDataToSpeciality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006051603006_AddClinicData.cs" />
+    <Compile Include="Migrations\202006051603006_AddClinicData.designer.cs">
+      <DependentUpon>202006051603006_AddClinicData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Clinic.cs" />
     <Compile Include="Models\Governorate.cs" />
+    <Compile Include="Models\SearchContext.cs" />
+    <Compile Include="Models\Speciality.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +214,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\GetClinic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -180,6 +231,35 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006051312486_initialcreate.resx">
+      <DependentUpon>202006051312486_initialcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051329296_dropcolumnfromGovernote.resx">
+      <DependentUpon>202006051329296_dropcolumnfromGovernote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051331063_AddDataToGovernorateTable.resx">
+      <DependentUpon>202006051331063_AddDataToGovernorateTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051444351_RemoveArabicNameColumn.resx">
+      <DependentUpon>202006051444351_RemoveArabicNameColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051446115_addDataToCityTable.resx">
+      <DependentUpon>202006051446115_addDataToCityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051526016_AddTablesClinicsAndSpeciality.resx">
+      <DependentUpon>202006051526016_AddTablesClinicsAndSpeciality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051529209_RelateClinicWithCity.resx">
+      <DependentUpon>202006051529209_RelateClinicWithCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051538421_AddDataToSpeciality.resx">
+      <DependentUpon>202006051538421_AddDataToSpeciality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051603006_AddClinicData.resx">
+      <DependentUpon>202006051603006_AddClinicData.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -214,7 +294,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
