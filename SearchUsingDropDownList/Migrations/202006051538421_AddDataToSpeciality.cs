@@ -17,6 +17,7 @@
             Sql("INSERT INTO Specialities (Name) VALUES ('Ear, Nose and Throat')");
             Sql("INSERT INTO Specialities (Name) VALUES ('Cardiology and Vascular Disease (Heart)')");
             Sql("INSERT INTO Specialities (Name) VALUES ('Allergy and Immunology (Sensitivity and Immunity)')");
+           
         }
         
         public override void Down()
